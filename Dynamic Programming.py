@@ -1,13 +1,16 @@
-from collections import defaultdict
+# Top-Down Memoization
 
-def fn(arr, k):
-    counts = defaultdict(int)
-    counts[0] = 1
-    ans = curr = 0
+def fn(arr):
+    def dp(STATE):
+        if BASE_CASE:
+            return 0
+        
+        if STATE in memo:
+            return memo[STATE]
+        
+        ans = RECURRENCE_RELATION(STATE)
+        memo[STATE] = ans
+        return ans
 
-    for num in arr:
-        # do logic to change curr
-        ans += counts[curr - k]
-        counts[curr] += 1
-    
-    return ans
+    memo = {}
+    return dp(STATE_FOR_WHOLE_INPUT)
